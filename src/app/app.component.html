@@ -1,0 +1,54 @@
+<div>
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+    <div class="form-group">
+      <label for="fName">First Name</label>
+      <input type="text" class="form-control" 
+             
+             [(ngModel)]="model.fName" name="fName"
+             #name="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="lName">Last Name</label>
+      <input type="text" class="form-control" 
+             [(ngModel)]="model.lName" name="lName">
+    </div>
+
+    <div class="form-group">
+      <label for="lName">Email</label>
+      <input type="text" class="form-control" 
+             [(ngModel)]="model.email" name="email">
+    </div>
+
+
+    <div *ngFor="let urlItem of model.urlItems; let i=index">
+      <div class="form-group">
+    
+          <label for="lName">Url</label>
+        <input type="text" [(ngModel)]="urlItems[i].url" name="urlItem{{i}}" class="form-control"  />
+        
+      </div>
+      <div class="form-group">
+          <label for="power">Method Type</label>
+          <select [(ngModel)]="urlItems[i].methodType" name="urlItem{{i}}" class="form-control">
+            <option *ngFor="let val of methodType" [value]="val">{{val}}</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+    
+            <label for="lName">Header Value</label>
+          <input type="text" [(ngModel)]="urlItems[i].headerValue" name="urlItem{{i}}" class="form-control"  />
+          
+        </div>
+      <br />
+  </div>
+
+    
+    <div (click)="addItem()" class="btn btn-info btn-lg">
+      <span class="glyphicon glyphicon-plus-sign"></span> Plus
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+    {{this.model | json}}
+  </form>
+</div>
