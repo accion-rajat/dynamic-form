@@ -3,5 +3,6 @@ export class UrlItem {
         public url?: string,
         public methodType?: string,
         public headerValue?: string,
+        public tagItem?: any
       ) {  }
 }
